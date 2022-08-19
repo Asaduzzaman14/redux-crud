@@ -1,25 +1,31 @@
 import React from 'react';
-import logo from './logo.svg';
+import { Provider } from 'react-redux';
 import './App.css';
+import AddPost from './components/AddPost';
+import Home from './components/Home';
+import Navbar from './components/Navbar';
+import store from './store/store';
+import { Route, Routes } from 'react-router-dom';
+import About from './components/About';
+import Update from './components/Update';
 
 function App() {
+
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Provider store={store}>
+
+      <Navbar></Navbar>
+      <Routes>
+        <Route path='/' element={<Home></Home>}></Route>
+        <Route path='/addPost' element={<AddPost />}></Route>
+        <Route path='/about' element={<About />}></Route>
+        <Route path='/updatePost/:id' element={<Update />}></Route>
+
+
+      </Routes>
+
+    </Provider>
   );
 }
 
